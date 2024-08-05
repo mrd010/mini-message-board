@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="styles.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= title %></title>
+  </head>
+  <body>
+    <%- include('header') %>
+    <main class="main">
+      <form action="/new" method="POST" class="form new-form">
+        <h1 class="title">New Message</h1>
+        <div class="form-field">
+          <label for="name">Name</label>
+          <input type="text" name="user" id="name" />
+        </div>
+        <div class="form-field">
+          <label for="message">Name</label>
+          <textarea rows="10" name="text" id="message"></textarea>
+        </div>
+        <div class="form-field">
+          <button type="submit">Submit</button>
+        </div>
+      </form>
+    </main>
+  </body>
+</html>
