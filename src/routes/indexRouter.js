@@ -1,7 +1,6 @@
-import { Request, Response, Router } from 'express';
-import { Message } from '../models/messages';
+const { Router } = require('express');
 
-const messages: Message[] = [
+const messages = [
   {
     text: 'Hi there!',
     user: 'Amando',
@@ -16,25 +15,26 @@ const messages: Message[] = [
 
 const indexRouter = Router();
 
-indexRouter.get('/', (req: Request, res: Response) => {
+indexRouter.get('/', (req, res) => {
   res.render('index', { title: 'mini message board', messages: messages });
 });
 
-indexRouter.get('/new', (req: Request, res: Response) => {
+indexRouter.get('/new', (req, res) => {
   res.render('form', { title: 'new message' });
 });
 
-indexRouter.post('/new', (req: Request, res: Response) => {
-  const data = req.body as Omit<Message, 'added'>;
+indexRouter.post('/new', (req, res) => {
+  const data = req.body;
   messages.push({ ...data, added: new Date() });
   res.redirect('/');
 });
 
-indexRouter.get('/inbox/:id', (req: Request, res: Response) => {
+indexRouter.get('/inbox/:id', (req, res) => {
   const index = Number(req.params.id);
   if (typeof index === 'number' && index >= 0 && index < messages.length) {
     const message = messages[index];
     res.render('message-details', { title: message.user, date: message.added, text: message.text });
   }
 });
-export { indexRouter };
+
+module.exports = indexRouter;

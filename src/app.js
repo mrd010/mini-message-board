@@ -1,6 +1,6 @@
-import express from 'express';
-import path from 'path';
-import { indexRouter } from './routes/indexRouter';
+const express = require('express');
+const path = require('path');
+const indexRouter = require('./routes/indexRouter');
 
 const app = express();
 
